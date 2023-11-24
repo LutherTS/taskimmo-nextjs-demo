@@ -32,7 +32,7 @@ export default async function Dashboard({
           </div>
           <p className="pt-4">
             Par mesure première et de simplicité, tous les projets de
-            l'utilisateur seront accessibles depuis sa page.
+            l&rsquo;utilisateur seront accessibles depuis sa page.
           </p>
         </div>
       </div>
