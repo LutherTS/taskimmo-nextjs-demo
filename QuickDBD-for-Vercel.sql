@@ -7,7 +7,7 @@
 
 CREATE TABLE Users (
     user_id varchar(200)  NOT NULL ,
-    user_username varchar(200)  NOT NULL ,
+    user_username varchar(200)  NOT NULL UNIQUE ,
     user_app_wide_name varchar(200)  NOT NULL ,
     user_full_name varchar(200)  NOT NULL ,
     user_email varchar(200)  NOT NULL ,
@@ -155,6 +155,23 @@ VALUES ('1d686f85-bcea-4f8e-ba36-b79b1ba2b53a', '2abd64b9-e8ac-4b33-9fe8-24a5970
 
 INSERT INTO TaskAssociates
 VALUES ('f1a0fda3-f744-421f-8b8b-451b709f1024', '2abd64b9-e8ac-4b33-9fe8-24a597026ea8', '1e993990-474f-4a36-838a-25db7765c32f', 'COMPANY');
+
+-- Données additionnelles
+
+INSERT INTO Users
+VALUES ('70a81ff4-b6d7-46fb-a999-a936dcb922d1', 'luther-c-pafo', 'Luther', 'Luther Tchofo Safo', 'l@l.com', '123456');
+
+INSERT INTO Projects
+VALUES ('55b652b1-b7b6-44f4-92d0-986043632b72', '70a81ff4-b6d7-46fb-a999-a936dcb922d1', 'Le Projet de Luther', now(), now(), 'COMPLETED');
+
+INSERT INTO Projects
+VALUES ('5c62c848-f02d-4131-ab8e-ed5ab777baa5', '987af2a5-aa97-45ac-9e30-0b3b49e2720c', 'Le Deuxième projet d’Émilie', now(), now(), 'CANCELED');
+
+INSERT INTO Categories
+VALUES ('65a6b76d-fd8c-4a1f-815f-864c1f123d4c', 'Menuiserie');
+
+INSERT INTO Categories
+VALUES ('9e768bbd-9b24-4239-810c-7a649653e34c', 'Électricité');
 
 -- Liste des requêtes
 
