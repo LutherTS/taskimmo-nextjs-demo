@@ -25,6 +25,7 @@ export default async function Project({
           {/* <h1>Project Page for ProjectID #{projectid}</h1> */}
           <h1>Project Page for ProjectID #{rows[0].project_id}</h1>
           <p className="pt-2">{rows[0].project_name}</p>
+          <p className="pt-2">{rows[0].project_state}</p>
         </div>
       </div>
     </>

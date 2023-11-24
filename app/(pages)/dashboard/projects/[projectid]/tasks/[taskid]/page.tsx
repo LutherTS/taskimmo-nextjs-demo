@@ -35,6 +35,9 @@ export default async function Task({
           </h1>
           <p className="pt-2">{rows[0].task_name}</p>
           <p className="pt-2">{rows[0].project_name}</p>
+          <p className="pt-2">{rows[0].task_state}</p>
+          <p className="pt-2">{rows[0].project_state}</p>
+          <p className="pt-2">{rows[0].category_name}</p>
         </div>
       </div>
     </>
