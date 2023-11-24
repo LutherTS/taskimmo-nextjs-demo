@@ -26,21 +26,29 @@ export default async function Task({
 
   return (
     <>
-      <div className="h-screen w-full flex justify-center items-center">
-        <div className="text-center">
-          <h1>
-            {/* Task Page for TaskID #{taskid} of ProjectID #{projectid} */}
-            Task Page for TaskID #{rows[0].task_id} of ProjectID #
-            {rows[0].project_id}
-          </h1>
-          <p className="pt-2">{rows[0].task_name}</p>
-          <p className="pt-2">{rows[0].task_state}</p>
-          <p className="pt-2">{rows[0].category_name}</p>
-          <p className="pt-2">{rows[0].project_name}</p>
-          <p className="pt-2">{rows[0].project_state}</p>
-          <p className="pt-2">{rows[0].user_app_wide_name}</p>
-          <p className="pt-2">{rows[0].user_full_name}</p>
-          <p className="pt-2">{rows[0].user_username}</p>
+      <div className="min-h-screen p-8 w-full flex justify-center items-center">
+        <div className="text-center max-w-prose">
+          <div>
+            <h1>
+              {/* Task Page for TaskID #{taskid} of ProjectID #{projectid} */}
+              Task Page for TaskID #{rows[0].task_id} of ProjectID #
+              {rows[0].project_id}
+            </h1>
+            <p className="pt-2">{rows[0].task_name}</p>
+            <p className="pt-2">{rows[0].task_state}</p>
+            <p className="pt-2">{rows[0].category_name}</p>
+            <p className="pt-2">{rows[0].project_name}</p>
+            <p className="pt-2">{rows[0].project_state}</p>
+            <p className="pt-2">{rows[0].user_app_wide_name}</p>
+            <p className="pt-2">{rows[0].user_full_name}</p>
+            <p className="pt-2">{rows[0].user_username}</p>
+          </div>
+          <p className="pt-4">
+            À partir de la page de tâche et de requêtes sur la table
+            TaskAssociates, il sera possible de retrouver par tâche toutes les
+            personnes légales (compagnies, amis, famille) travaillant sur cette
+            tâche.
+          </p>
         </div>
       </div>
     </>

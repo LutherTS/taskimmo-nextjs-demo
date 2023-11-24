@@ -25,15 +25,21 @@ export default async function Project({
 
   return (
     <>
-      <div className="h-screen w-full flex justify-center items-center">
-        <div className="text-center">
-          {/* <h1>Project Page for ProjectID #{projectid}</h1> */}
-          <h1>Project Page for ProjectID #{rows[0].project_id}</h1>
-          <p className="pt-2">{rows[0].project_name}</p>
-          <p className="pt-2">{rows[0].project_state}</p>
-          <p className="pt-2">{rows[0].user_app_wide_name}</p>
-          <p className="pt-2">{rows[0].user_full_name}</p>
-          <p className="pt-2">{rows[0].user_username}</p>
+      <div className="min-h-screen p-8 w-full flex justify-center items-center">
+        <div className="text-center max-w-prose">
+          <div>
+            {/* <h1>Project Page for ProjectID #{projectid}</h1> */}
+            <h1>Project Page for ProjectID #{rows[0].project_id}</h1>
+            <p className="pt-2">{rows[0].project_name}</p>
+            <p className="pt-2">{rows[0].project_state}</p>
+            <p className="pt-2">{rows[0].user_app_wide_name}</p>
+            <p className="pt-2">{rows[0].user_full_name}</p>
+            <p className="pt-2">{rows[0].user_username}</p>
+          </div>
+          <p className="pt-4">
+            Par mesure première et de simplicité, toutes les tâches du projet
+            seront accessibles depuis sa page.
+          </p>
         </div>
       </div>
     </>

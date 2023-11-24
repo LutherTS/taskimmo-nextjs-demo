@@ -21,13 +21,19 @@ export default async function Dashboard({
 
   return (
     <>
-      <div className="h-screen w-full flex justify-center items-center">
-        <div className="text-center">
+      <div className="min-h-screen p-8 w-full flex justify-center items-center">
+        <div className="text-center max-w-prose">
           {/* <h1>Dashboard Page</h1> */}
-          <h1>Dashboard Page for User {rows[0].user_username}</h1>
-          <p className="pt-2">{rows[0].user_app_wide_name}</p>
-          <p className="pt-2">{rows[0].user_full_name}</p>
-          <p className="pt-2">{rows[0].user_username}</p>
+          <div>
+            <h1>Dashboard Page for User {rows[0].user_username}</h1>
+            <p className="pt-2">{rows[0].user_app_wide_name}</p>
+            <p className="pt-2">{rows[0].user_full_name}</p>
+            <p className="pt-2">{rows[0].user_username}</p>
+          </div>
+          <p className="pt-4">
+            Par mesure première et de simplicité, tous les projets de
+            l'utilisateur seront accessibles depuis sa page.
+          </p>
         </div>
       </div>
     </>
