@@ -74,7 +74,7 @@ CREATE TABLE TaskAssociates (
     )
 );
 
--- Test rapide de la structure des pages via the NextJS App Router
+-- Test rapide de la structure des pages via le NextJS App Router
 -- Pas besoin de page projets, ils seront sur dashboard.
 
 -- app
@@ -91,6 +91,26 @@ CREATE TABLE TaskAssociates (
 ------------ [taskid]
 -------------- page.tsx
 ---------- page.tsx 
+
+-- "Simpler file structure"
+
+-- app
+---- (pages)
+------ signup
+-------- page.tsx
+------ signin
+-------- page.tsx
+------ users
+-------- [username]
+---------- dashboard
+------------ (overview)
+-------------- page.tsx
+---------- projects
+------------ [projectid]
+-------------- page.tsx
+---------- tasks
+------------ [taskid]
+-------------- page.tsx
 
 -- Liste des données
 
