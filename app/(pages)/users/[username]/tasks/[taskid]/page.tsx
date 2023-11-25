@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 async function fetchTaskAssociatesByTask(taskid: string) {
-  console.log(taskid);
+  // console.log(taskid);
   try {
     const data = await sql`
     SELECT * FROM TaskAssociates
@@ -43,7 +43,7 @@ export default async function Task({
   `;
 
   const taskTaskAssociates = await fetchTaskAssociatesByTask(taskid);
-  console.log(taskTaskAssociates);
+  // console.log(taskTaskAssociates);
 
   if (!rows[0]) {
     notFound();
@@ -101,4 +101,4 @@ export default async function Task({
   );
 }
 
-// Keeping the double dynamics for now but I can find the info on the project directly from the task so it's not something worth keeping.
+// Keeping the double dynamics for now but I can find the info on the project directly from the task so it's not something worth keeping. (Update: projectid removed from URL.)
