@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 async function fetchTasksByProject(username: string, projectid: string) {
-  console.log(username);
-  console.log(projectid);
+  // console.log(username);
+  // console.log(projectid);
   try {
     const data = await sql`
       SELECT * FROM Tasks
@@ -36,14 +36,14 @@ export default async function Project({
 
   const { rows } = await sql`
     SELECT * FROM Projects
-    JOIN users ON projects.user_id = users.user_id 
-    WHERE users.user_username=${username}
-    AND projects.project_id=${projectid}
+    JOIN Users ON Projects.user_id = Users.user_id 
+    WHERE Users.user_username=${username}
+    AND Projects.project_id=${projectid}
     LIMIT 1;
   `;
 
   const projectTasks = await fetchTasksByProject(username, projectid);
-  console.log(projectTasks);
+  // console.log(projectTasks);
 
   if (!rows[0]) {
     notFound();
