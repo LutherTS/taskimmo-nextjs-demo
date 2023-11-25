@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 async function fetchTasksByProject(username: string, projectid: string) {
-  console.log(username);
-  console.log(projectid);
+  // console.log(username);
+  // console.log(projectid);
   try {
     const data = await sql`
       SELECT * FROM Tasks
@@ -43,7 +43,7 @@ export default async function Project({
   `;
 
   const projectTasks = await fetchTasksByProject(username, projectid);
-  console.log(projectTasks);
+  // console.log(projectTasks);
 
   if (!rows[0]) {
     notFound();
