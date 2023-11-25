@@ -2,13 +2,14 @@ import { sql } from "@vercel/postgres";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
-async function fetchProjectByUser(username: string) {
+async function fetchProjectsByUser(username: string) {
   // console.log(username);
   try {
     const data = await sql`
       SELECT * FROM Projects
       JOIN Users ON Projects.user_id = Users.user_id
       WHERE Users.user_username=${username}
+      LIMIT 5;
     `;
     // console.log(data);
     return data.rows;
@@ -33,7 +34,7 @@ export default async function Dashboard({
     LIMIT 1;
   `;
 
-  const userProjects = await fetchProjectByUser(username);
+  const userProjects = await fetchProjectsByUser(username);
   // console.log(userProjects);
 
   if (!rows[0]) {
@@ -47,7 +48,7 @@ export default async function Dashboard({
           {/* <h1>Dashboard Page</h1> */}
           <div>
             <h1>Dashboard Page for User {rows[0].user_username}</h1>
-            <p className="pt-2">{rows[0].user_app_wide_name}</p>
+            <p className="pt-2 font-semibold">{rows[0].user_app_wide_name}</p>
             <p className="pt-2">{rows[0].user_full_name}</p>
             <p className="pt-2">{rows[0].user_username}</p>
           </div>
@@ -55,20 +56,22 @@ export default async function Dashboard({
             Par mesure première et de simplicité, tous les projets de
             l&rsquo;utilisateur seront accessibles depuis sa page.
           </p>
-          <ol className="pt-4 space-y-2">
-            {userProjects.map((userProject) => {
-              return (
-                <li key={userProject.project_id}>
-                  <Link
-                    className="underline"
-                    href={`/users/${userProject.user_username}/projects/${userProject.project_id}`}
-                  >
-                    <p>{userProject.project_name}</p>
-                  </Link>
-                </li>
-              );
-            })}
-          </ol>
+          {userProjects && (
+            <ol className="pt-4 space-y-2">
+              {userProjects.map((userProject) => {
+                return (
+                  <li key={userProject.project_id}>
+                    <Link
+                      className="underline"
+                      href={`/users/${userProject.user_username}/projects/${userProject.project_id}`}
+                    >
+                      <p>{userProject.project_name}</p>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ol>
+          )}
         </div>
       </div>
     </>

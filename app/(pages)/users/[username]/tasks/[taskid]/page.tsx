@@ -1,5 +1,6 @@
 import { sql } from "@vercel/postgres";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 export default async function Task({
   params,
@@ -35,12 +36,22 @@ export default async function Task({
               Task Page for TaskID #{rows[0].task_id} of ProjectID #
               {rows[0].project_id}
             </h1>
-            <p className="pt-2">{rows[0].task_name}</p>
+            <p className="pt-2 font-semibold">{rows[0].task_name}</p>
             <p className="pt-2">{rows[0].task_state}</p>
             <p className="pt-2">{rows[0].category_name}</p>
-            <p className="pt-2">{rows[0].project_name}</p>
+            <Link
+              href={`/users/${username}/projects/${rows[0].project_id}`}
+              className="underline inline-block pt-2"
+            >
+              {rows[0].project_name}
+            </Link>
             <p className="pt-2">{rows[0].project_state}</p>
-            <p className="pt-2">{rows[0].user_app_wide_name}</p>
+            <Link
+              href={`/users/${username}/dashboard`}
+              className="underline inline-block pt-2"
+            >
+              {rows[0].user_app_wide_name}
+            </Link>
             <p className="pt-2">{rows[0].user_full_name}</p>
             <p className="pt-2">{rows[0].user_username}</p>
           </div>
