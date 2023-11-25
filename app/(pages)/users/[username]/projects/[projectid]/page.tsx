@@ -36,9 +36,9 @@ export default async function Project({
 
   const { rows } = await sql`
     SELECT * FROM Projects
-    JOIN users ON projects.user_id = users.user_id 
-    WHERE users.user_username=${username}
-    AND projects.project_id=${projectid}
+    JOIN Users ON Projects.user_id = Users.user_id 
+    WHERE Users.user_username=${username}
+    AND Projects.project_id=${projectid}
     LIMIT 1;
   `;
 

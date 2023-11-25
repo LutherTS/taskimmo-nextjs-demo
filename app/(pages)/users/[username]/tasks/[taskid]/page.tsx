@@ -2,6 +2,26 @@ import { sql } from "@vercel/postgres";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
+async function fetchTaskAssociatesByTask(taskid: string) {
+  console.log(taskid);
+  try {
+    const data = await sql`
+    SELECT * FROM TaskAssociates
+    JOIN Tasks ON TaskAssociates.task_id = Tasks.task_id
+    JOIN Associates ON TaskAssociates.associate_id = Associates.associate_id
+    JOIN Projects ON Tasks.project_id = Projects.project_id
+    JOIN Users ON Projects.user_id = Users.user_id
+    WHERE Tasks.task_id=${taskid}
+    LIMIT 5;
+    `;
+    // console.log(data);
+    return data.rows;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to user projects data.");
+  }
+}
+
 export default async function Task({
   params,
 }: {
@@ -14,13 +34,16 @@ export default async function Task({
   const username = params.username;
   const { rows } = await sql`
     SELECT * FROM Tasks 
-    JOIN projects ON tasks.project_id = projects.project_id
-    JOIN categories ON tasks.category_id = categories.category_id
-    JOIN users ON projects.user_id = users.user_id 
-    WHERE users.user_username=${username}
-    AND tasks.task_id=${taskid}
+    JOIN Projects ON Tasks.project_id = Projects.project_id
+    JOIN Categories ON Tasks.category_id = Categories.category_id
+    JOIN Users ON Projects.user_id = Users.user_id 
+    WHERE Users.user_username=${username}
+    AND Tasks.task_id=${taskid}
     LIMIT 1;
   `;
+
+  const taskTaskAssociates = await fetchTaskAssociatesByTask(taskid);
+  console.log(taskTaskAssociates);
 
   if (!rows[0]) {
     notFound();
@@ -61,6 +84,17 @@ export default async function Task({
             personnes légales (compagnies, amis, famille) travaillant sur cette
             tâche.
           </p>
+          {taskTaskAssociates && (
+            <ol className="pt-4 space-y-2">
+              {taskTaskAssociates.map((taskTaskAssociate) => {
+                return (
+                  <li key={taskTaskAssociate.taskassociate_id}>
+                    <p>{taskTaskAssociate.associate_app_wide_name}</p>
+                  </li>
+                );
+              })}
+            </ol>
+          )}
         </div>
       </div>
     </>
