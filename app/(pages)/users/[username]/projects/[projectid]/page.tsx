@@ -17,6 +17,7 @@ export default async function Project({
     JOIN users ON projects.user_id = users.user_id 
     WHERE users.user_username=${username}
     AND projects.project_id=${projectid}
+    LIMIT 1;
   `;
 
   if (!rows[0]) {

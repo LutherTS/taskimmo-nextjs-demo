@@ -17,7 +17,8 @@ export default async function Task({
     JOIN categories ON tasks.category_id = categories.category_id
     JOIN users ON projects.user_id = users.user_id 
     WHERE users.user_username=${username}
-    AND tasks.task_id=${taskid};
+    AND tasks.task_id=${taskid}
+    LIMIT 1;
   `;
 
   if (!rows[0]) {
